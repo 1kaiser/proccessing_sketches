@@ -1,6 +1,6 @@
 int i, j;
 
-float an1=15, an2=15, h=1, ang1=radians(an1), ang2=radians(an2), 
+float an1=15, an2=15, h=500, ang1=radians(an1), ang2=radians(an2), 
 rotation=radians(h), C=radians(h), tang, n;
 PFont font, font1, font2;
 String sentence;//text in the centre
@@ -9,24 +9,24 @@ color icolour, icolour1, icolour2;
 void setup() 
 {
   background(255);
-  //size( 7860, 4320);
-  size(  8192,5120 );
+  size( 7860, 4320);
+  //size(  8192, 5120 );
   c_centre();
-  icolour1=color(0, 0, 0);
-  icolour2=color(255, 255, 255);
+  icolour1=color(50, 0, 255, 100);
+  icolour2=color(0, 50, 255, 200);
 
-  for (n=0; n<dist (0, 0, i, j); n=n+h)
+  for (n=0; n<dist (0, 0, width, height); n=n+h)
   {
-    stroke(lerpColor(icolour1, icolour2, map(n, 0, dist (0, 0, i, j), 0, 1)));
+    stroke(lerpColor(icolour1, icolour2, map(n, 0, dist (0, 0, width, height), 0, 1)));
     //fill(lerpColor(icolour1, icolour2, map(n, 0, dist (0, 0, i, j), 0, 1)));
-    strokeWeight(h);
-    noSmooth();
+    strokeWeight(490);
+    smooth();
     // arc(i, j, 2*n, 2*n, ang1+rotation, ang2+rotation, OPEN);
     // arc(i, j, 2*n, 2*n, ang1+rotation+PI, ang2+rotation+PI, OPEN);
-    line(i+n, j-height, i+n, j+height);
-    line(i-n-h, j-height, i-n-h, j+height);
-    line(i-width, j+n, i+width, j+n);
-    line(i-width, j-n-h, i+width, j-n-h);
+    line(i+n+h/2, j-height, i+n+h/2, j+height);
+    line(i-n-h/2, j-height, i-n-h/2, j+height);
+    line(i-width, j+n+h/2, i+width, j+n+h/2);
+    line(i-width, j-n-h/2, i+width, j-n-h/2);
   }
   /*
   icolour=color(255);
@@ -40,11 +40,19 @@ void setup()
    ellipse(i, j, 2*sqrt(2)*n, 2*sqrt(2)*n);//central circle
    }
    */
-  sentence="FALL";
+  sentence="THINK";
   font1=loadFont("ArialRoundedMTBold-255.vlw");
   textFont(font1, 500);
   textAlign(CENTER, CENTER);
-  fill(255, 255, 255);
+  fill(0, 180, 255);
+  noSmooth();
+  text(sentence, i, j);
+
+  sentence="\n\n\n\nfacebook.com/chetna.heer";
+  font1=loadFont("HelveticaNeue-UltraLight-255.vlw");
+  textFont(font1, 200);
+  textAlign(CENTER, TOP);
+  fill(255);
   noSmooth();
   text(sentence, i, j);
 
@@ -68,9 +76,9 @@ void setup()
     { 
 
 
-      stroke(color(150, 100, 50));
+      stroke(color(255, 0, 100));
       strokeWeight(10);
-      fill(color(200, 100, 100));
+      fill(color(255, 0, 0));
       noSmooth();
       ellipse(i+x1, j+y1, 2*y2/20, 2*y2/20);
 
@@ -87,7 +95,9 @@ void setup()
   }
 
 
-  save("diagonal6.tif");
+  save("diagonal2.tif");
+  save("diagonal2.png");
+  save("diagonal2.jpeg");
 }
 
 void c_centre()// canvas centre 
