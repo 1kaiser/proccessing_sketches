@@ -7,31 +7,21 @@ PImage  img;
 
 void setup() 
 {
-  int llll=13;
+  int llll=12;
   // img = loadImage("c ("+llll+").jpg");
   int ll=2;
 
   //size( 8192, 5120);
   //size( 1920, 1080);
   size( 7680, 4320);
-  background(255);
+  background(0);
   //  quadrants();// design of background 
   // arter();
+  //  popup();
   //cor(.9,.9, min(width, height)/50, (20));
   noSmooth();
-  // ab(1.05, .05, min(height, width)/5*1.25, -70, .1);
-  xx(1, 0, color(255, 50), color(0, 50), (2*dist(0, 0, height, width)), 90, .01);
-  //quadrants();// design of background
-  { 
-    noStroke();
-    fill(250);
-    rectMode(CENTER);  // Set rectMode to CENTER
-    rect(width*.5, height*.5, height*.2, width*.2, min(width, height)/50);
-  } 
-  rectMode(CORNER);
-  String s = "IIWII";
-  PFont font3=loadFont("CenturyGothic-Bold-255.vlw"); 
-  //  popup(.5, .5, s, (min(width, height)/10), color(255, 20, 20), font3) ;
+  ab(1.05, .05, min(height, width)/5*1.25, -70, .1);
+  xx(.5, .5, color(255, 50), color(0, 50), (min(height, width)/5), 90, .1);
   save("diagonalck ("+llll+").png");
   // save("diagonalc ("+llll+").tiff");
   //save("diagonalck ("+llll+").jpg");
@@ -107,8 +97,8 @@ void dots()
 
   noFill();
   {  
-    color icolour1=color(255, 0);
-    color icolour2=color(255, 100);
+    color icolour1=color(255, 0, 180, 100);
+    color icolour2=color(255, 230, 0, 100);
     float v1=0, v2=0, v3=1, v4=1;
     // line(v1*width, v2*height, v3*width, v4*height);
     noSmooth();
@@ -143,9 +133,9 @@ void dots()
 void plus_cross()
 { 
   smooth();  
-  {
-    color icolour1=color(255, 0);
-    color icolour2=color(255, 100);
+  {  
+    color icolour1=color(0, 255, 180, 10);
+    color icolour2=color(20);
     float  v1=.5, v2=.5, v3=.5, v4=1;
     // line(v1*width, v2*height, v3*width, v4*height);
     noSmooth();
@@ -279,14 +269,17 @@ void art(float i, float  j, float n, float m)
      strokeWeight(min(width, height)/100);
      */
   }
-} 
-void popup(float n1, float n2, String s, float m, color c, PFont font3) {
-
+}
+void popup() {
+  float n1=.5, n2=.5;
+  String s = "17:04";
+  m=min(width, height)/50;
   fill(220, 200);
   // rect( width*n1-m*s.length()/2/2, height*n2-2*m/2, m*s.length()/2, 2* m, min(width, height)/200);
   textAlign(CENTER, CENTER);
-  textFont(font3, m);
-  fill(c);
+  font=loadFont("CenturyGothic-Bold-255.vlw"); 
+  textFont(font, m);
+  fill(50);
   smooth();
   text(s, width*n1-m*s.length()/2, height*n2-2*m/2, m*s.length(), 2* m);
 }

@@ -7,7 +7,7 @@ PImage  img;
 
 void setup() 
 {
-  int llll=14;
+  int llll=18;
   img = loadImage("c ("+llll+").jpg");
   //  int ll=2;
 
@@ -31,13 +31,10 @@ void setup()
    //image(img, -img.width/2, 0, img.width/2, height);
    
    */  image(img, 0, 0, width, height);
-
-  filter(POSTERIZE, 8);  //background(255, 220, 0, 50);
-
+  filter(GRAY); 
+  // filter(POSTERIZE, 8);  //background(255, 220, 0, 50);
   quadrants();// design of background 
-  //filter(GRAY); 
   filter(POSTERIZE, 2);
-
   /*  {
    float n1, n2;
    n1=1;
@@ -121,11 +118,9 @@ void setup()
   {
     float n1=.5;
     float n2=.9;
-    icolour1=color(130, 255, 0, 40);  
-    icolour2=color(0, 255, 130, 40);
+    icolour1=color(130, 255, 0, 20);  
+    icolour2=color(0, 255, 130, 20);
     float dia=min(height, width)/5*1.2/2;
-    fill(255, 230, 0);
-    ellipse( width*n1, height*n2, dia, dia);
     float gap=radians(30);
     for (float n=180-0; n>0; n=n-30)
     {
@@ -185,7 +180,7 @@ void setup()
    color icolour2=color(255);
    float m=.1*min(width, height);
    rectMode(RADIUS);  
-                                                                                                                                                                                                                                                                /*  ellipseMode(CENTER); 
+                                                                                                                                                                                                        /*  ellipseMode(CENTER); 
    fill(0, 130, 255);
    noStroke();
    ellipse(n1*width, n2*height, 2.5*m, 2.5*m);
@@ -380,14 +375,14 @@ void setup()
   // save("diagonalc ("+llll+").tiff");
   //save("diagonalck ("+llll+").jpg");
 }
-float i, j, spacer=min(width, height)*.1, fs=900, //font size 
-n=2, //length of plus 
+float i, j, spacer=10, fs=900, //font size 
+n=10, //length of plus 
 t=n*.5;
 color  c1= color(0, 143, 229), //background upper gradient 
 c2= color(255, 255, 0, 200), //background lower gradient 
 c3= color(144, 79, 144), //dot colour 
 c5= color(49, 164, 255, 200), //text colour 
-c6= color(255, 30, 30, 100);
+c6= color(255, 50, 50, 50);
 void quadrants()
 {
   float v1=.5, v2=.5, v3=1.2, v4=1.2;
@@ -438,8 +433,8 @@ void quadrants()
 
 void quadrant_compoents()
 {
-  plus_cross();
-  //dots();
+  //plus_cross();
+  dots();
 }
 
 
@@ -485,23 +480,6 @@ void dots()
 void plus_cross()
 { 
   stroke(c6);
-  /*  noFill();
-   {  
-   color icolour1=color(255);
-   color icolour2=color(0);
-   float v1=0, v2=0, v3=1, v4=1;
-   // line(v1*width, v2*height, v3*width, v4*height);
-   
-   
-   float v5=dist(v1*width, v2*height, v3*width, v4*height);
-   {
-   
-   float v6=dist(i, j, v3*width, v4*height);
-   //    float x = lerp(v1*width, v3*width, i/v5) ;
-   //float y = lerp(v2*height, v4*height, j/v5);
-   stroke(lerpColor(icolour1, icolour2, map( v6, 0, v5, 0, 1)));
-   }
-   }*/
   strokeWeight(t); 
   line(i-n, j-n, i+n, j+n);// up to down  
   line(i-n, j+n, i+n, j-n);// down to up

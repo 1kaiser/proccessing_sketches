@@ -6,29 +6,12 @@ color icolour, icolour1, icolour2;
 
 void setup() 
 {
-  background(255, 0, 0);
+  background(255);
   size( 7860, 4320);
   noSmooth();
   //  col(); 
-  //back();
-  { 
-    icolour1=color(255);
-    icolour2=color(255, 255, 0, 150);
-    float n1=.5;
-    float n2=.5;
-    float q=30;
-    for (float p=q/2; p<sqrt (2)*dist (0, 0, width, height); p=p+q)
-    {
-      stroke(lerpColor(icolour1, icolour2, map(p, 0, sqrt (2)*dist (0, 0, width, height), 0, 1)));
-      //fill(lerpColor(icolour1, icolour2, map(p, 0, dist (0, 0, i, j), 0, 1)));
-      strokeWeight(20);
-      smooth();
-      line(n1*width+p-width/2, n2*height-width/2, n1*width+p+width/2, n2*height+width/2);
-      line(n1*width-p-width/2, n2*height-width/2, n1*width-p+width/2, n2*height+width/2);
-      line(n1*width+p+width/2, n2*height-width/2, n1*width+p-width/2, n2*height+width/2);
-      line(n1*width-p+width/2, n2*height-width/2, n1*width-p-width/2, n2*height+width/2);
-    }
-  }
+  // back();
+
 
   {
     noStroke();
@@ -38,7 +21,7 @@ void setup()
     icolour2=color(255, 150, 0, 40);
     float dia=min(height, width)/5*1.2*.5/5;
     fill(255); 
-    // ellipse( width*n1, height*n2, dia, dia);
+    ellipse( width*n1, height*n2, dia, dia);
     float gap=radians(30);
     /*    for (float n=180-0; n>0; n=n-1)
      {
@@ -333,7 +316,7 @@ void setup()
 
 
   save("diagonal5.png");
-  // save("diagonal5.tiff");
+  save("diagonal5.tiff");
   //  save("diagonal5.jpeg");
 }
 void lip()
@@ -378,8 +361,8 @@ void lip()
 
 
       n=90;  
-      b=-.7;
-      for (int o=0; o<700; o++)
+      b=-.5;
+      for (int o=0; o<1000; o++)
       { 
         float c1=n1*width+s1*cos(radians(n))+a*exp(b*t2)*cos(t2+PI/2+radians(n)+PI);
         float c2=n2*height+s1*sin(radians(n))+a*exp(b*t2)*sin(t2+PI/2+radians(n)+PI);
@@ -387,7 +370,7 @@ void lip()
         t2+=rad;
         curveVertex(c1, c2);
       } 
-      for (int o=0; o<700; o++)
+      for (int o=0; o<1000; o++)
       {          
         float c1=n1*width+s1*cos(radians(n))+a*exp(b*t2)*cos(-t2-PI/2+radians(n)+PI);
         float c2=n2*height+s1*sin(radians(n))+a*exp(b*t2)*sin(-t2-PI/2+radians(n)+PI);
@@ -410,7 +393,7 @@ void back()
     float s1=0;
 
     float b=-.5;
-    float a=sin(h1/2)/3*min(height, width)/.35/3;
+    float a=sin(h1/2)/3*min(height, width)/.35/4.5;
     strokeWeight(min(height, width)/700);
 
     noStroke();
@@ -425,7 +408,7 @@ void back()
     { 
       float n=-90;
       beginShape();
-      b=-2;
+      b=-0.4;
       for (int o=0; o<1000; o++)
       {
         float c1=n1*width+s1*cos(radians(n))+a*exp(b*t2)*cos(t2+PI/2+radians(n)+PI);
@@ -441,7 +424,7 @@ void back()
         t2-=rad;
         curveVertex(c1, c2);
       }    
-      a=sin(h1/2)/3*min(height, width)/.35/4.5;
+
       n2=.5;
       n=90;  
       b=.2;

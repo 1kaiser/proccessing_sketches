@@ -7,14 +7,14 @@ PImage  img;
 
 void setup() 
 {
-  int llll=14;
-  img = loadImage("c ("+llll+").jpg");
-  //  int ll=2;
+  int llll=7;
+  // img = loadImage("c ("+llll+").jpg");
+  int ll=2;
 
-  // size( 1920, 1080);
-  // size( 5760, 3240);
-  // size( 7680, 4320);
-  size( img.width, img.height);
+  //size( 8192, 5120);
+  size( 1920*3, 1080*3);
+  //size( 7680, 4320);
+  //size( img.width, img.height);
   /*
 
    if (img.width/img.height<=1)
@@ -29,200 +29,113 @@ void setup()
    }
    // size( img.width*ll, img.height*ll);
    //image(img, -img.width/2, 0, img.width/2, height);
-   
-   */  image(img, 0, 0, width, height);
-
-  filter(POSTERIZE, 8);  //background(255, 220, 0, 50);
-
+   // filter(GRAY);
+   // filter(POSTERIZE, 100);
+   */  background(50);
   quadrants();// design of background 
-  //filter(GRAY); 
-  filter(POSTERIZE, 2);
 
-  /*  {
-   float n1, n2;
-   n1=1;
-   n2=0;
-   
-   icolour1=color(255, 0, 0, 100);
-   icolour2=color(0, 0, 255, 100);
-   int cmin=100, cmax=255, alp=200;
-   float dia=min(height, width)/5*1.2;
-   float diff=.1;
-   fill(255);      
-   noStroke();
-   
-   //ellipse( width*n1, height*n2, 8*dia, 8*dia);
-   
-   for (float n=0; n<360; n=n+diff)
-   {
-   noStroke();
-   //  fill(icolour1);
-   {
-   
-   float no= n*(cmax-cmin)*6/360;
-   
-   int k=floor(no/(cmax-cmin));
-   int ll=0;
-   if (k%2==0)
-   {
-   ll=1;
-   } 
-   if (k%2==1)
-   {
-   ll=-1;
-   }
-   float p=abs(no-k*(cmax-cmin));
-   float b1=0, b2=0, b3=0;
-   
-   if (k==0)
-   {
-   b1=cmin;
-   b2=cmin+ll*p;
-   b3=cmax;
-   }
-   if (k==1)
-   {
-   b1=cmin;
-   b2=cmax;
-   b3=cmax+ll*p;
-   }
-   if (k==2)
-   {
-   b1=cmin+ll*p;
-   b2=cmax;
-   b3=cmin;
-   }
-   if (k==3)
-   {
-   b1=cmax;
-   b2=cmax+ll*p;
-   b3=cmin;
-   }
-   if (k==4)
-   {
-   b1=cmax;
-   b2=cmin;
-   b3=cmin+ll*p;
-   }  
-   if (k==5)
-   {
-   b1=cmax+ll*p;
-   b2=cmin;
-   b3=cmax;
-   }
-   fill(b1, b2, b3, alp);
-   }
-   // fill(lerpColor(icolour1, icolour2, map(abs(180-n), 0, 180, 0, 1)));
-   
-   arc( width*n1, height*n2, 8*dia, 8*dia, radians(n), radians(n+diff), PIE);
-   //  ellipse( width*n1, height*n2, dia, dia);
-   }
-   }*/
   {
-    float n1=.5;
-    float n2=.9;
-    icolour1=color(130, 255, 0, 40);  
-    icolour2=color(0, 255, 130, 40);
-    float dia=min(height, width)/5*1.2/2;
-    fill(255, 230, 0);
-    ellipse( width*n1, height*n2, dia, dia);
-    float gap=radians(30);
-    for (float n=180-0; n>0; n=n-30)
+    noSmooth();
+    String s = "A quick brown fox jumps over the lazy dog";
+    fill(50);
+    float n1=.6, n2=.4;
+
+    font=loadFont("MicrosoftJhengHeiLight-255.vlw");
+
+    //   font=loadFont("MicrosoftJhengHeiUIBold-255.vlw");
+    textFont(font, min(width, height)/40);
+    color icolour1=color(255);
+    color icolour2=color(255);
+    float m=.1*min(width, height);
+    rectMode(RADIUS);  
+    /*  ellipseMode(CENTER); 
+     fill(0, 130, 255);
+     noStroke();
+     ellipse(n1*width, n2*height, 2.5*m, 2.5*m);
+     */
+
+    {
+      n1=.5; 
+      n2=.65;
+      icolour1=color(255, 0, 255, 40);
+      icolour2=color(0, 0, 255, 40);
+      float dia=min(height, width)/5*1.2/3/1.5;
+      float gap=radians(60);
+      fill(255);     
+      ellipse(n1*width, n2*height, dia, dia);
+      for (float n=180-0; n>0; n=n-20)
+      {
+        noStroke();
+
+        fill(lerpColor(icolour2, icolour1, map(n, 0, 180, 0, 1)));
+        arc( width*n1, height*n2, dia, dia, -radians(n)+gap, +radians(n)+gap, OPEN);
+        arc( width*n1, height*n2, dia, dia, -radians(n)+gap*2, +radians(n)+gap*2, OPEN);
+      }
+    }
+    filter(BLUR, 2);
+
+    {
+      n1=.46; 
+      n2=.61;
+      icolour1=color(0, 255, 255, 40);
+      icolour2=color(0, 255, 0, 40);
+      float dia=min(height, width)/5*1.2/3;
+      float gap=radians(60);
+      fill(255);     
+      ellipse(n1*width, n2*height, dia, dia);
+      for (float n=180-0; n>0; n=n-20)
+      {
+        noStroke();
+
+        fill(lerpColor(icolour2, icolour1, map(n, 0, 180, 0, 1)));
+        arc( width*n1, height*n2, dia, dia, -radians(n)+gap, +radians(n)+gap, OPEN);
+        arc( width*n1, height*n2, dia, dia, -radians(n)+gap*2, +radians(n)+gap*2, OPEN);
+      }
+    }
+    filter(BLUR, 2);
+    n1=.5; 
+    n2=.45;
+    icolour1=color(255, 255, 0, 40);
+    icolour2=color(255, 0, 0, 40);
+    float dia=min(height, width)/5*1.2;
+    float gap=radians(60);
+    fill(255);     
+    ellipse(n1*width, n2*height, dia, dia);
+    for (float n=180-0; n>0; n=n-20)
     {
       noStroke();
 
       fill(lerpColor(icolour2, icolour1, map(n, 0, 180, 0, 1)));
       arc( width*n1, height*n2, dia, dia, -radians(n)+gap, +radians(n)+gap, OPEN);
       arc( width*n1, height*n2, dia, dia, -radians(n)+gap*2, +radians(n)+gap*2, OPEN);
-    }        
-    float diff=.1;
-    for (float n=0; n<360; n=n+diff)
-    {
-      noStroke();
-      fill(lerpColor(icolour1, icolour2, map(abs(180-n), 0, 180, 0, 1)));
-      //  arc( width*n1, height*n2, dia, dia, radians(n), radians(n+diff), PIE);
     }
-  }
-  {    
-    { 
-      float n1=.5;
-      float n2=.9;
-      icolour1=color(0, 130, 255, 40);  
-      icolour2=color(0, 255, 130, 40);
+    noStroke();
+    fill(250, 100);
+    ellipse(width*n1, height*n2, dia, dia);
+    stroke(255); 
+    fill(255);
+    strokeWeight(min(width, height)/100);
+    filter(BLUR, 5);
+/*
+    {    
+      strokeWeight(min(width, height)/100);
+      stroke(255); 
+      strokeCap(ROUND);
+      noFill();
+      float dt=min(height, width)/5*1.2*.3, n3=.5;
+      n1=(width*n3-dt/2)/width; 
+      n2=.45;
+      float n=270;
+      line( width*n1, height*n2, width*n1+dt*cos(radians(n)), height*n2+dt*sin(radians(n)));
+      line( width*n1, height*n2, width*n1+dt*cos(radians(n+45))*sqrt(2), height*n2+dt*sin(radians(n+45))*sqrt(2));
+      line( width*n1, height*n2, width*n1+dt*cos(radians(n+135))*sqrt(2), height*n2+dt*sin(radians(n+135))*sqrt(2));
+      line( width*n1, height*n2, width*n1+dt*cos(radians(n+180)), height*n2+dt*sin(radians(n+180)));
+    }*/
+    ellipse(width*n1, height*n2, dia*.6, dia*.6);
+    textAlign(CENTER, CENTER);
+    //text(s, n1*width, n2*height, m, m);
+  } 
 
-      float dia=min(height, width)/5*1.2/3*2/2;
-      for (float n0=360-0; n0>0; n0=n0-30) {
-        float s1=random(width*.05, width*.8);
-        float a1=s1*cos(radians(n0));
-        float a2=s1*sin(radians(n0));
-        float dia1=lerp(dia*.08, dia*.5, map(s1, width*.05, width*.8, 0, 1));
-        float gap=radians(60);
-        for (float n=180-0; n>0; n=n-30)
-        {
-          noStroke();
-
-          fill(lerpColor(icolour2, icolour1, map(n, 0, 180, 0, 1)));
-          arc( width*n1+a1, height*n2+a2, dia1, dia1, -radians(n)-gap/2+radians(n0), +radians(n)-gap/2+radians(n0), OPEN);
-          arc( width*n1+a1, height*n2+a2, dia1, dia1, -radians(n)+gap/2+radians(n0), +radians(n)+gap/2+radians(n0), OPEN);
-        }
-      }
-    }
-  }
-  // filter(BLUR, 5);
-  /*      icolour1=color(130, 0, 255, 40);
-   icolour2=color(0, 130, 255, 40);
-   {
-   noSmooth();
-   String s = "A quick brown fox jumps over the lazy dog";
-   fill(50);
-   float n1=.6, n2=.4;
-   
-   font=loadFont("MicrosoftJhengHeiLight-255.vlw");
-   
-   //   font=loadFont("MicrosoftJhengHeiUIBold-255.vlw");
-   textFont(font, min(width, height)/40);
-   color icolour1=color(255);
-   color icolour2=color(255);
-   float m=.1*min(width, height);
-   rectMode(RADIUS);  
-                                                                                                                                                                                                                                                                /*  ellipseMode(CENTER); 
-   fill(0, 130, 255);
-   noStroke();
-   ellipse(n1*width, n2*height, 2.5*m, 2.5*m);
-   */
-
-
-  //filter(BLUR, 2);
-  /*
-    {
-   n1=.46; 
-   n2=.61;
-   icolour1=color(255, 255, 0, 40);
-   icolour2=color(255, 0, 0, 40);     
-   float dia=min(height, width)/5*1.2/3;
-   float gap=radians(60);
-   for (float n=180-0; n>0; n=n-20)
-   {
-   noStroke();
-   
-   fill(lerpColor(icolour2, icolour1, map(n, 0, 180, 0, 1)));
-   arc( width*n1, height*n2, dia, dia, -radians(n)+gap, +radians(n)+gap, OPEN);
-   arc( width*n1, height*n2, dia, dia, -radians(n)+gap*2, +radians(n)+gap*2, OPEN);
-   }
-   }
-   */  //   
-
-  /*  noStroke();
-   fill(250, 100);
-   // ellipse(width*n1, height*n2, dia, dia);
-   
-   fill(10, 100);
-   strokeWeight(min(width, height)/100);
-   filter(BLUR, 5);
-   textAlign(CENTER, CENTER);
-   text(s, n1*width, n2*height, m, m);
-   } 
-   */
   /*  {
    float y11=min(width, height)/8;
    float n1=.55, n2=.5;
@@ -376,23 +289,24 @@ void setup()
    }
    }
    */
+
   save("diagonalck ("+llll+").png");
   // save("diagonalc ("+llll+").tiff");
   //save("diagonalck ("+llll+").jpg");
 }
-float i, j, spacer=min(width, height)*.1, fs=900, //font size 
-n=2, //length of plus 
+float i, j, spacer=10, fs=900, //font size 
+n=10, //length of plus 
 t=n*.5;
 color  c1= color(0, 143, 229), //background upper gradient 
 c2= color(255, 255, 0, 200), //background lower gradient 
 c3= color(144, 79, 144), //dot colour 
 c5= color(49, 164, 255, 200), //text colour 
-c6= color(255, 30, 30, 100);
+c6= color(255, 50, 50, 50);
 void quadrants()
 {
-  float v1=.5, v2=.5, v3=1.2, v4=1.2;
+  float v1=.5, v2=.5, v3=1.5, v4=1.5;
 
-
+  noSmooth();
   {
     {
 
@@ -438,23 +352,23 @@ void quadrants()
 
 void quadrant_compoents()
 {
-  plus_cross();
-  //dots();
+  //plus_cross();
+  dots();
 }
 
 
 void dots()
 { 
 
-
+  noSmooth();
 
   noFill();
   {  
-    color icolour1=color(0, 50);
-    color icolour2=color(165, 255, 0, 50);
+    color icolour1=color(255, 0, 180, 100);
+    color icolour2=color(255, 230, 0, 100);
     float v1=0, v2=0, v3=1, v4=1;
     // line(v1*width, v2*height, v3*width, v4*height);
-
+    noSmooth();
 
     float v5=dist(v1*width, v2*height, v3*width, v4*height);
     {
@@ -484,24 +398,8 @@ void dots()
 
 void plus_cross()
 { 
+  smooth();
   stroke(c6);
-  /*  noFill();
-   {  
-   color icolour1=color(255);
-   color icolour2=color(0);
-   float v1=0, v2=0, v3=1, v4=1;
-   // line(v1*width, v2*height, v3*width, v4*height);
-   
-   
-   float v5=dist(v1*width, v2*height, v3*width, v4*height);
-   {
-   
-   float v6=dist(i, j, v3*width, v4*height);
-   //    float x = lerp(v1*width, v3*width, i/v5) ;
-   //float y = lerp(v2*height, v4*height, j/v5);
-   stroke(lerpColor(icolour1, icolour2, map( v6, 0, v5, 0, 1)));
-   }
-   }*/
   strokeWeight(t); 
   line(i-n, j-n, i+n, j+n);// up to down  
   line(i-n, j+n, i+n, j-n);// down to up
