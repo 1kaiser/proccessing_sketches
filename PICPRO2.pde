@@ -8,7 +8,7 @@ PImage img;
 float cal;
 
 void setup() {
-  img = loadImage("iss040e010643 Moon_14851018951_o.jpg");
+  img = loadImage("IMG_20121223_113930_stitch.jpg");
 
   size( img.width, img.height);
   background(img);
@@ -22,19 +22,6 @@ void setup() {
   stroke(255);
   strokeWeight(min(width, height)/300);
   ellipse(n1*width, n2*height, s1*2, s1*2);
-
-
-  color icolour1=color(0, 255, 0);
-  color icolour2=color(0, 255, 255);
-  for (float n=180; n>0; n=n-.1)
-  {
-    noStroke();
-    fill(lerpColor(icolour1, icolour2, map(n, 0, 180, 0, 1)));
-    // strokeWeight(50);
-    noSmooth();
-    arc(n1*width, n2*height+s1, s1/1.6, s1/1.6, PI/2 -radians(n), PI/2+radians(n), OPEN);
-    // rotation++;
-  }
   fill(0, 0, 0, 50);
   strokeWeight(min(width, height)/80); 
   strokeJoin(MITER);
@@ -50,19 +37,19 @@ void setup() {
   }
   endShape(CLOSE);
   // heart(n1*width, n2*height);
-  float gap=min(width, height)/30;
+  float gap=min(width, height)/15;
   noSmooth();
-  sentence="MOON";
-  PFont font=loadFont("Moonbeam-255.vlw");//AgencyFB-Bold-255.vlw");
+  sentence="ENTANGLED";
+  PFont font=loadFont("RomanD-255.vlw");//AgencyFB-Bold-255.vlw");
   textFont(font, gap);
   textAlign(CENTER, CENTER);
   fill(255);//255, 215, 0);
-  text(sentence, n1*width, n2*height+s1+gap+s1/1.6/2);
+  text(sentence, n1*width, n2*height+s1+gap);
 
 
 
 
-  save("iss040e010643 Moon_14851018951_o.png");
+  save("IMG_20121223_113930_stitch1.jpg");
 }
 void heart(float q1, float q2)
 {
