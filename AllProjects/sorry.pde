@@ -14,7 +14,7 @@ c6= color(255, 255, 255, 50);// plus colour
  c2= color(0, 159, 255), //background lower gradient 
  */
 
-PImage img=loadImage("IMG_20140914_131831.jpg");
+//PImage img=loadImage("IMG_20140914_131831.jpg");
 
 
 
@@ -29,7 +29,7 @@ void setup()
   //background(img);
   filter(THRESHOLD, 0.151);
 
-  setGradient(0, 0, img.width, img.height, c1, c2);
+  setGradient(0, 0, 7860/3,4320/3, c1, c2);
 
   //setGradient(0, 0, img.width, img.height, c1, c2);// background 
   quadrants();// design of background 
@@ -115,8 +115,8 @@ void setup()
     }
   }
   sentence="BETTER\n\n";
-  font=loadFont("GillSansMT-ExtraCondensedBold-255.vlw");
-  textFont(font, dist(0, 0, img.width, img.height)/90);
+  //font=loadFont("GillSansMT-ExtraCondensedBold-255.vlw");
+  //textFont(font, dist(0, 0, img.width, img.height)/90);
   textAlign(CENTER, BOTTOM );
   fill(255);
   noSmooth();

@@ -12,7 +12,7 @@ int spacer;
 
 void setup() {
    background(0);
-  size(7860,4320);
+  size(7860/3,4320/3);
 
 spacer=20;
 if((height%2==0)&&(width%2==0))
@@ -44,4 +44,3 @@ if((height%2==0)&&(width%2==0))
  }
  }
  */
-
