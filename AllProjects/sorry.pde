@@ -22,11 +22,11 @@ void setup()
 {
 
   // background(0, 112, 201, 150);
-  img=loadImage("IMG_20140914_131831.jpg");
-  // size( 7860,4320 );
+  //img=loadImage("IMG_20140914_131831.jpg");
+   size( 7860/3,4320/3 );
   // size(  5120, 8192 );
-  size(  img.width, img.height );
-  background(img);
+  //size(  img.width, img.height );
+  //background(img);
   filter(THRESHOLD, 0.151);
 
   setGradient(0, 0, img.width, img.height, c1, c2);
@@ -216,4 +216,3 @@ void plus_cross()
   line(i-n, j-n, i+n, j+n);// up to down  
   line(i-n, j+n, i+n, j-n);// down to up
 }
-
