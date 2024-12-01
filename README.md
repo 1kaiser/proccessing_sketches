@@ -25,4 +25,8 @@ satisfactoraly results started coming on 22.9.2015
 https://github.com/1kaiser/proccessing_sketches/blob/main/colors48_4.pde
 ![diagonal5](https://user-images.githubusercontent.com/26379748/141817259-e89f5ea9-b644-4bfc-8f4a-7198451c4862.png)
 
+test results
+| outputs | outputs | outputs |
+|---|---|---|
+|![](https://github.com/1kaiser/proccessing_sketches/blob/main/test/PICPRO4/IMAG09242.png)|![](https://github.com/1kaiser/proccessing_sketches/blob/main/test/PICPRO4/IMAG09242.png)|![](https://github.com/1kaiser/proccessing_sketches/blob/main/test/PICPRO4/IMAG09242.png)|
 
