@@ -26,15 +26,18 @@ def _url_path(rel_posix: str) -> str:
     return "/".join(quote(part) for part in rel_posix.split("/"))
 
 
-def discover_gallery_images(repo_root: Path) -> list[str]:
+def discover_gallery_images(repo_root: Path, include_posters: bool = False) -> list[str]:
     candidates: set[str] = set()
 
-    # 1. Local files (outputs/posters and checked-out sketches/processing/rendered_archive)
-    for base in [
-        repo_root / "outputs" / "posters",
+    # 1. Local files (optionally outputs/posters plus checked-out archive directories)
+    search_bases = [
         repo_root / "sketches" / "processing" / "rendered_archive",
         repo_root / "sketches" / "processing" / "fireworkx",
-    ]:
+    ]
+    if include_posters:
+        search_bases.insert(0, repo_root / "outputs" / "posters")
+
+    for base in search_bases:
         if base.exists():
             for p in base.rglob("*"):
                 if p.is_file() and p.suffix.lower() == ".png":
@@ -103,11 +106,12 @@ def main() -> None:
     parser.add_argument("--repo-root", default=str(REPO_ROOT), help="Repository root path")
     parser.add_argument("--readme", default="README.md", help="README path relative to repo root")
     parser.add_argument("--cols", type=int, default=3, help="Gallery columns")
+    parser.add_argument("--include-posters", action="store_true", help="Include outputs/posters/ alongside archive renders")
     parser.add_argument("--dry-run", action="store_true", help="Print count only without modifying README")
     args = parser.parse_args()
 
     root = Path(args.repo_root).resolve()
-    images = discover_gallery_images(root)
+    images = discover_gallery_images(root, include_posters=args.include_posters)
     gallery_md = format_markdown_gallery(images, cols=args.cols)
     if args.dry_run:
         print(f"Discovered {len(images)} PNG gallery entries.")
