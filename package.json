@@ -1,0 +1,15 @@
+{
+  "name": "proccessing_sketches",
+  "version": "2.0.0",
+  "description": "Pure Node.js p5.js headless renderer, Processing-to-p5.js tools, and Google Colab CLI workflows",
+  "private": true,
+  "scripts": {
+    "render:poster": "node scripts/render_p5_node.js --sketch sketches/p5js/jax_xla_tpu_poster/sketch.js --width 2400 --height 3200 --out outputs/posters/jax_xla_tpu_poster_p5_local.png",
+    "render:boids": "node scripts/render_p5_node.js --sketch sketches/p5js/flocking_boids/sketch.js --width 1280 --height 720 --frames 90 --fps 30 --mp4 outputs/flocking_boids_demo.mp4"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.60",
+    "jsdom": "^25.0.0",
+    "p5": "1.11.3"
+  }
+}
