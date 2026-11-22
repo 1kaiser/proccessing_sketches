@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Processing Sketches &amp; Generative Posters — 1kaiser</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="./carousel.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <a class="back-link" href="https://1kaiser.github.io/" title="Back to 1kaiser.github.io">&larr; 1kaiser.github.io</a>
+      <div class="title-wrap">
+        <h1>Processing Sketches &amp; Generative Posters</h1>
+        <p class="subtitle">148 curated procedural outputs &middot; Live <code>p5.js</code> canvases &middot; Google Colab CLI pipeline</p>
+      </div>
+    </div>
+
+    <nav class="mode-tabs" role="tablist" aria-label="Workspace modes">
+      <button type="button" class="mode-tab active" data-mode="carousel" role="tab" aria-selected="true">Figure Carousel</button>
+      <button type="button" class="mode-tab" data-mode="poster" role="tab" aria-selected="false">Live p5.js Poster</button>
+      <button type="button" class="mode-tab" data-mode="boids" role="tab" aria-selected="false">Live Flocking Boids</button>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" id="refs-btn" class="ghost-btn">References</button>
+      <a class="ghost-btn" href="https://github.com/1kaiser/proccessing_sketches" target="_blank" rel="noopener">GitHub Repo</a>
+      <a class="colab-btn" href="https://colab.research.google.com/github/1kaiser/proccessing_sketches/blob/main/Render%F0%9F%8E%A6p5js.ipynb" target="_blank" rel="noopener">Colab Poster</a>
+      <a class="colab-btn" href="https://colab.research.google.com/github/1kaiser/proccessing_sketches/blob/main/notebooks/Processing_PDE_Batch_Colab.ipynb" target="_blank" rel="noopener">Colab PDE Batch</a>
+    </div>
+  </header>
+
+  <main class="page-main">
+    <!-- MODE 1: FIGURE CAROUSEL -->
+    <section id="view-carousel" class="view-section">
+      <div class="toolbar">
+        <div id="category-pills" class="category-pills" aria-label="Filter by sketch family"></div>
+        <div class="toolbar-right">
+          <input id="carousel-search" type="search" placeholder="Search folder, sketch, or .pde…" aria-label="Search figures" />
+          <span id="slide-counter" class="slide-counter">1 / 148</span>
+        </div>
+      </div>
+
+      <div id="carousel-stage" class="carousel-stage stage-dark">
+        <button type="button" id="btn-prev" class="nav-arrow nav-prev" aria-label="Previous figure">&lsaquo;</button>
+        <div class="stage-viewport">
+          <img id="stage-img" src="./assets/jax_xla_tpu_poster_p5_colab.png" alt="Featured JAX XLA TPU Generative Poster" />
+          <div id="stage-loading" class="stage-loading" hidden>Loading figure…</div>
+          <div id="stage-error" class="stage-error" hidden></div>
+        </div>
+        <button type="button" id="btn-next" class="nav-arrow nav-next" aria-label="Next figure">&rsaquo;</button>
+        <button type="button" id="btn-stage-bg" class="stage-bg-toggle" title="Toggle dark/light backdrop">Light Stage</button>
+      </div>
+
+      <div class="slide-meta-bar">
+        <div class="meta-info">
+          <div class="meta-title-row">
+            <span id="slide-cat" class="cat-badge">Featured</span>
+            <h2 id="slide-title">JAX / XLA / TPU — Procedural p5.js Poster (2400&times;3200)</h2>
+          </div>
+          <p id="slide-note" class="meta-desc"></p>
+        </div>
+        <div class="meta-actions">
+          <button type="button" id="btn-autoplay" class="action-btn">Autoplay</button>
+          <button type="button" id="btn-lightbox" class="action-btn">Lightbox Zoom</button>
+          <a id="btn-source" class="action-btn primary" href="#" target="_blank" rel="noopener">View Source</a>
+          <a id="btn-full-res" class="action-btn" href="#" target="_blank" rel="noopener">Full-Res Original</a>
+        </div>
+      </div>
+
+      <div id="filmstrip" class="filmstrip" aria-label="Figure thumbnail strip"></div>
+
+      <section id="pattern-map" class="pattern-section">
+        <div class="pattern-header">
+          <div>
+            <h3>Poster Pattern Map: From Processing 3 Archive to JAX / XLA / TPU Poster</h3>
+            <p>Click any architectural layer below to jump the carousel straight to the source Processing 3 render it adapts.</p>
+          </div>
+        </div>
+        <div id="pattern-grid" class="pattern-grid"></div>
+      </section>
+    </section>
+
+    <!-- MODE 2: LIVE P5.JS POSTER -->
+    <section id="view-poster" class="view-section" hidden>
+      <div class="canvas-controls">
+        <div class="control-group">
+          <label for="poster-seed">Deterministic Seed:</label>
+          <input id="poster-seed" type="number" value="2026" min="1" max="999999" />
+          <button type="button" id="btn-render-poster" class="action-btn primary">Render Preview (1200&times;1600)</button>
+          <button type="button" id="btn-save-poster" class="action-btn">Save Canvas PNG</button>
+        </div>
+        <div class="control-group">
+          <a class="action-btn" href="./assets/jax_xla_tpu_poster_p5_colab.png" download="jax_xla_tpu_poster_p5_colab.png">Download Verified Colab 2400&times;3200 PNG</a>
+        </div>
+      </div>
+      <div id="poster-status" class="canvas-status">Select this tab to initialize live <code>p5.js</code> rendering with bundled SIL OFL <code>Inter</code> fonts.</div>
+      <div id="poster-canvas-mount" class="canvas-mount"></div>
+    </section>
+
+    <!-- MODE 3: LIVE FLOCKING BOIDS -->
+    <section id="view-boids" class="view-section" hidden>
+      <div class="canvas-controls">
+        <div class="control-group">
+          <span class="cat-badge">Reynolds Boids &middot; Seed 2026</span>
+          <button type="button" id="btn-restart-boids" class="action-btn primary">Restart Flock</button>
+        </div>
+        <div class="control-group">
+          <a class="action-btn" href="https://github.com/1kaiser/proccessing_sketches/blob/main/sketches/p5js/flocking_boids/sketch.js" target="_blank" rel="noopener">View <code>flocking_boids/sketch.js</code></a>
+        </div>
+      </div>
+      <div id="boids-status" class="canvas-status">Select this tab to launch the live <code>Flocking Boids</code> p5.js simulation (paused automatically when switching tabs).</div>
+      <div id="boids-canvas-mount" class="canvas-mount"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Archive of <code>1kaiser/proccessing_sketches</code> &middot; Windowed lazy streaming from GitHub raw CDN</span>
+    <span><a href="https://1kaiser.github.io/">1kaiser.github.io</a> &middot; <a href="https://github.com/1kaiser/proccessing_sketches" target="_blank" rel="noopener">Repository</a></span>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-label="Full-resolution figure viewer">
+    <div class="lightbox-inner">
+      <button type="button" id="lightbox-close" class="lightbox-close" aria-label="Close lightbox">&times;</button>
+      <button type="button" id="lightbox-prev" class="nav-arrow nav-prev" aria-label="Previous figure">&lsaquo;</button>
+      <img id="lightbox-img" src="" alt="Full resolution preview" />
+      <button type="button" id="lightbox-next" class="nav-arrow nav-next" aria-label="Next figure">&rsaquo;</button>
+      <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <!-- REFERENCES MODAL -->
+  <div id="refs-modal" class="modal-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="refs-title">
+    <div class="refs-card">
+      <div class="refs-head">
+        <h3 id="refs-title">References &amp; Tooling</h3>
+        <button type="button" id="refs-close" class="lightbox-close" aria-label="Close references">&times;</button>
+      </div>
+      <ul class="refs-list">
+        <li>
+          <strong>Processing Language &amp; Environment:</strong>
+          Reas, C., &amp; Fry, B. (2007). <em>Processing: A Programming Handbook for Visual Designers and Artists</em>. MIT Press &middot;
+          <a href="https://processing.org/" target="_blank" rel="noopener">processing.org</a>.
+        </li>
+        <li>
+          <strong>p5.js JavaScript Creative Coding Library (v1.11.3):</strong>
+          McCarthy, L., Reas, C., &amp; Fry, B. (2015). <em>Getting Started with p5.js</em>. Processing Foundation &middot;
+          <a href="https://p5js.org/" target="_blank" rel="noopener">p5js.org</a>.
+        </li>
+        <li>
+          <strong>Deterministic Headless Rendering &amp; Colab Automation:</strong>
+          <code>@napi-rs/canvas</code> (Rust Skia 2D graphics bindings), <code>jsdom</code>, and
+          <code>google-colab-cli</code> (<code>colab</code>) with Jupytext &amp; Papermill execution verification.
+        </li>
+        <li>
+          <strong>Typography:</strong>
+          Andersson, R. <em>Inter</em> Typeface (SIL Open Font License 1.1, bundled in <code>assets/fonts/</code>).
+        </li>
+        <li>
+          <strong>Repository &amp; Portfolio:</strong>
+          <a href="https://github.com/1kaiser/proccessing_sketches" target="_blank" rel="noopener">github.com/1kaiser/proccessing_sketches</a> &middot;
+          <a href="https://1kaiser.github.io/">1kaiser.github.io</a>.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="./carousel.js"></script>
+</body>
+</html>

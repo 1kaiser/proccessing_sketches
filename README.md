@@ -3,6 +3,9 @@
   <h1>proccessing_sketches</h1>
   <p><strong>Generative Processing 3 archives &amp; headless <code>p5.js</code> rendering locally and via Google Colab CLI (<code>colab</code>)</strong></p>
   <p>
+    <a href="https://1kaiser.github.io/proccessing_sketches/">
+      <img src="https://img.shields.io/badge/Live_Carousel_%26_p5.js_Gallery-1kaiser.github.io-2563eb?style=for-the-badge" alt="Live Interactive Figures Carousel & p5.js Gallery" />
+    </a>
     <a href="https://colab.research.google.com/github/1kaiser/proccessing_sketches/blob/main/Render%F0%9F%8E%A6p5js.ipynb" target="_parent">
       <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open Render🎦p5js in Colab" />
     </a>

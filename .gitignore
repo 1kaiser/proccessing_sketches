@@ -19,3 +19,4 @@ colab_results*.tar.gz
 p5.txt
 out.txt
 index.js
+_site/

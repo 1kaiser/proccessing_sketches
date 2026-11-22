@@ -1,0 +1,62 @@
+name: Deploy Processing Sketches Carousel to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout lean Pages sources
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          sparse-checkout: |
+            site
+            scripts
+            sketches/p5js
+            outputs/posters
+            assets/fonts
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Assemble lean _site artifact
+        run: |
+          mkdir -p _site/assets/fonts _site/sketches
+          cp -r site/. _site/
+          cp outputs/posters/jax_xla_tpu_poster_p5_colab.png _site/assets/jax_xla_tpu_poster_p5_colab.png
+          cp assets/fonts/Inter-*.otf _site/assets/fonts/
+          cp sketches/p5js/jax_xla_tpu_poster/sketch.js _site/sketches/jax_xla_tpu_poster.js
+          cp sketches/p5js/flocking_boids/sketch.js _site/sketches/flocking_boids.js
+          python3 scripts/build_gallery_manifest.py --out _site/gallery_manifest.json
+          touch _site/.nojekyll
+          du -sh _site
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
