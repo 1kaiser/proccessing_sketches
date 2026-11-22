@@ -1,0 +1,21 @@
+# Jupyter / IDE checkpoints
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Node.js / Python dependencies and caches
+node_modules/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# Ephemeral Colab & headless render scratch
+MD/
+outputs/tmp/
+*_output.ipynb
+*.log
+.DS_Store
+colab_bundle*.tar.gz
+colab_results*.tar.gz
+p5.txt
+out.txt
+index.js
